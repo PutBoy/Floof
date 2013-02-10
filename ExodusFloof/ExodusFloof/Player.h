@@ -55,8 +55,8 @@ private:
 	double jumpVelo;
 	double walkSpeed;
 
-	sf::Clock lastGravShot;
-	bool gravShotActive;
+	sf::Clock mLastGravShot;
+	bool mFirstShot;
 };
 
 #endif

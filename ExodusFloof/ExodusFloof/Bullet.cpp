@@ -22,5 +22,5 @@ void Bullet::Update()
 
 void Bullet::Render()
 {
-	GetCanvas()->AddNewJob(new SimpleImageJob("Bullet", GetX()-32, GetY()-32), 1);
+	GetCanvas()->AddNewJob(new SimpleImageJob("Bullet", GetX()-32, GetY()-32), 2);
 }

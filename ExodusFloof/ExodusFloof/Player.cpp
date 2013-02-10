@@ -14,7 +14,8 @@ Player::Player(Input& input, double x, double y, int playerNumber):
 	mPlayerNumber(playerNumber),
 	mInput(input),
 	GameObject(x, y, 0.5),
-	mAngleVec(0, sf::Vector2f(0,0))
+	mAngleVec(0, sf::Vector2f(0,0)),
+	mFirstShot(true)
 {
 	Config config;
 	CharacterLoader* charLoader = dynamic_cast<CharacterLoader*>(config.GetLoader("Character"));
@@ -93,9 +94,10 @@ void Player::Update()
 		SetVelocityY(GetVelocityY() + 0.1);
 
 	//Shoot grav gun
-	if(mInput.Shoot() && lastGravShot.getElapsedTime().asSeconds()>GRAV_SHOT_WAIT)
+	if(mInput.Shoot() && (mFirstShot || mLastGravShot.getElapsedTime().asSeconds()>GRAV_SHOT_WAIT))
 	{
-		lastGravShot.restart();
+		mFirstShot=false;
+		mLastGravShot.restart();
 		Fire();
 	}
 
@@ -147,7 +149,7 @@ void Player::Update()
 		{
 			floofs.push_back(collision->GetDirection());
 		}
-		if (collision->GetGameObject()->IsID("Bullet"))
+		if (collision->GetGameObject()->IsID("Bullet") && mLastGravShot.getElapsedTime().asSeconds()>1.0)
 		{
 			collision->GetGameObject()->Kill();
 			ReverseGravity();
