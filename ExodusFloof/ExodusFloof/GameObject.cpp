@@ -67,8 +67,8 @@ bool GameObject::Dead(){
 
 void GameObject::Update(){
 	
-	int newX = GetX();
-	int newY = GetY();
+	double newX = GetX();
+	double newY = GetY();
 
 	SetX(newX + mVelocityX);
 	SetY(newY + mVelocityY);

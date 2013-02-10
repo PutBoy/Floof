@@ -129,7 +129,7 @@ void Player::Update()
 	{
 		if ( GetVelocityY() < 0.15 && GetVelocityY() > -0.15)
 		{
-			SetVelocityY(-jumpVelo);
+			SetVelocityY(-jumpVelo*gravityModifier);
 			SetY(GetY() -2.f);
 			mJumping = true;
 		}
