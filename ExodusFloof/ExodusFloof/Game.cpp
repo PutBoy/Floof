@@ -16,7 +16,6 @@
 Game::Game()
 	:mBoxWorld(b2Vec2(0.f, 10.f))
 {
-	worldTimer.restart();
 
 	LevelCreator level(20, 9, mBoxWorld);
 	
@@ -59,9 +58,9 @@ void Game::Render()
 void Game::Update()
 {
 
-	float32 timeStep = worldTimer.restart().asMilliseconds();
-	int32 velocityIterations = 6;
-	int32 positionIterations = 2;
+	float32 timeStep = 1.f / 60.f;
+	int32 velocityIterations = 8;
+	int32 positionIterations = 1;
 
 	mBoxWorld.Step(timeStep, velocityIterations, positionIterations);
 

@@ -12,12 +12,13 @@ Box::Box(double x, double y, int gravity, b2World& world):
 	SetID("Box");
 
 	b2BodyDef bodyDef;
-	bodyDef.position.Set(x, y);
+	bodyDef.position.Set(x / 32.f, y / 32.f);
 	bodyDef.type = b2_dynamicBody;
+	bodyDef.fixedRotation = true;
 	mBody = world.CreateBody(&bodyDef);
 
 	b2PolygonShape dynamicBox;
-	dynamicBox.SetAsBox(32.0f, 32.0f);
+	dynamicBox.SetAsBox(1.0f, 1.0f);
 
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &dynamicBox;
@@ -39,8 +40,8 @@ void Box::Render()
 
 void Box::Update(){
 
-	SetX(mBody->GetPosition().x);
-	SetY(mBody->GetPosition().y);
+	SetX(mBody->GetPosition().x * 32);
+	SetY(mBody->GetPosition().y * 32);
 	/*
 	SetVelocityY(GetVelocityY() + 0.1 * static_cast<double>(gravityModifier));
 

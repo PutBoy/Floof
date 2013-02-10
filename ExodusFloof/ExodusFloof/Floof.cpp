@@ -13,12 +13,12 @@ Floof::Floof(double x, double y, b2World& world):
 	SetID("Floof");
 
 	b2BodyDef bodyDef;
-	bodyDef.position.Set(x, y);
+	bodyDef.position.Set(x / 32.f, y / 32.f);
 	bodyDef.type = b2_staticBody;
 	mBody = world.CreateBody(&bodyDef);
 
 	b2PolygonShape dynamicBox;
-	dynamicBox.SetAsBox(32.0f, 32.0f);
+	dynamicBox.SetAsBox(1.0f, 1.0f);
 
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &dynamicBox;

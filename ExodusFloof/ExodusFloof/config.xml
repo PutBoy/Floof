@@ -23,7 +23,7 @@
     </Image>
     
     <DynamicImage name = "bunny">
-      <a rotateimage ="true"/>
+      <a rotateimage ="false"/>
       <a centerx ="32" centery="32"/>
       
       <Animation>

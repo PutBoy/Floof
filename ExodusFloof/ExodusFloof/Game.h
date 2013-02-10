@@ -26,8 +26,6 @@ private:
 	std::vector<GameObject*> objects;
 	CollisionHandler collider;
 
-	sf::Clock worldTimer;
-
 
 };
 #endif
