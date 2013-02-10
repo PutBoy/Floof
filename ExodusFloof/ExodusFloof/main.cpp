@@ -1,6 +1,7 @@
 #include "SFMLWindow.h"
 #include "Game.h"
 #include "Config.h"
+#include <Box2d\Box2D.h>
 
 int main()
 {

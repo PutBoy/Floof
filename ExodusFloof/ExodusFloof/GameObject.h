@@ -10,14 +10,14 @@
 struct Collision;
 class GameObject{
 public:
-	GameObject(int x, int y, double weigth);
+	GameObject(double x, double y, double weigth);
 	~GameObject();
 
-	int GetX() {return mX;};
-	int GetY() {return mY;};
+	double GetX() {return mX;};
+	double GetY() {return mY;};
 
-    void SetX(int newX) {mX = newX;};
-	void SetY(int newY) {mY = newY;};
+    void SetX(double newX) {mX = newX;};
+	void SetY(double newY) {mY = newY;};
 
 	void SetSizeX(int size) {mSizeX = size;};
 	int GetSizeX() {return mSizeX;};
@@ -57,8 +57,8 @@ private:
 	std::vector<GameObject*> drops;
 	std::vector<Collision*> collisions;
 
-	int mX;
-	int mY;
+	double mX;
+	double mY;
 
 	bool killed;
 

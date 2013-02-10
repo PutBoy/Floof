@@ -10,7 +10,7 @@
 #include "Collision.h"
 #include "Push.h"
 
-Player::Player(Input& input, int x, int y, int playerNumber):
+Player::Player(Input& input, double x, double y, int playerNumber):
 	mPlayerNumber(playerNumber),
 	mInput(input),
 	GameObject(x, y, 0.5),
@@ -52,7 +52,7 @@ void Player::Render()
 	if (mAction == "walk")
 		mAction = "walk";
 
-	GetCanvas()->AddNewJob(new DynamicImageJob("bunny", GetX() - 32, GetY() - 32, mAnimFrame / 20, mAction, mAngleVec.angle), 1);
+	GetCanvas()->AddNewJob(new DynamicImageJob("bunny", GetX() - 32.f, GetY() - 32.f, mAnimFrame / 20, mAction, mAngleVec.angle), 1);
 	GetCanvas()->AddNewJob(new DebugTextJob(ss.str(), 0, 0), 1);
 }
 
@@ -124,7 +124,7 @@ void Player::Update()
 		if ( GetVelocityY() < 0.15 && GetVelocityY() > -0.15)
 		{
 			SetVelocityY(-jumpVelo);
-			SetY(GetY() -2);
+			SetY(GetY() -2.f);
 			mJumping = true;
 		}
 	}
