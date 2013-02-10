@@ -14,6 +14,7 @@ Floof::Floof(double x, double y, b2World& world):
 
 	b2BodyDef bodyDef;
 	bodyDef.position.Set(x, y);
+	bodyDef.type = b2_staticBody;
 	mBody = world.CreateBody(&bodyDef);
 
 	b2PolygonShape dynamicBox;
