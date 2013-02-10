@@ -12,10 +12,12 @@
 #include "Push.h"
 
 Player::Player(Input& input, double x, double y, int playerNumber, b2World& world):
+	GameObject(x, y, world),
 	mPlayerNumber(playerNumber),
 	mInput(input),
-	GameObject(x, y, world),
-	mAngleVec(0, sf::Vector2f(0,0))
+	mAngleVec(0, sf::Vector2f(0,0)),
+	mFirstShot(true)
+	
 {
 	Config config;
 	CharacterLoader* charLoader = dynamic_cast<CharacterLoader*>(config.GetLoader("Character"));
@@ -70,23 +72,26 @@ Player::~Player()
 
 void Player::Render()
 {
-	std::stringstream ss;
-	ss << GetX() << std::endl;
-	ss << GetY() << std::endl;
 
 	if (mAction == "walk")
 		mAction = "walk";
 
-	GetCanvas()->AddNewJob(new DebugTextJob(ss.str(), 0, 0), 2);
 
-	GetCanvas()->AddNewJob(new DynamicImageJob("bunny", GetX(), GetY(), mAnimFrame / 20, mAction, mAngleVec.angle), 1);
+	GetCanvas()->AddNewJob(new DynamicImageJob("bunny", GetX()-32.f, GetY()-32.f, mAnimFrame / 20, mAction, mAngleVec.angle), 1);
 
 }
 
 void Player::Update()
 {
+
 	SetX(mBody->GetPosition().x * 32.f);
 	SetY(mBody->GetPosition().y * 32.f);
+
+	const double GRAV_SHOT_WAIT=1.0;
+
+
+//	std::cout <<"spriteX: "<< GetY()<<" "<<"bodyX: "<< mBody->GetPosition().y<<std::endl;
+
 
 	mAnimFrame++;
 
@@ -116,8 +121,13 @@ void Player::Update()
 		mJumping = false;
 	}
 
-	if(mInput.Shoot())
+
+	//Shoot grav gun
+	if(mInput.Shoot() && (mFirstShot || mLastGravShot.getElapsedTime().asSeconds()>GRAV_SHOT_WAIT))
+
 	{
+		mFirstShot=false;
+		mLastGravShot.restart();
 		Fire();
 	}
 		
@@ -171,6 +181,11 @@ void Player::Update()
 		{
 			floofs.push_back(collision->GetDirection());
 		}
+		if (collision->GetGameObject()->IsID("Bullet") && mLastGravShot.getElapsedTime().asSeconds()>1.0)
+		{
+			collision->GetGameObject()->Kill();
+			ReverseGravity();
+		}
 
 		collision = GetNextCollision();
 	}
@@ -210,12 +225,13 @@ void Player::Update()
 
 void Player::ReverseGravity()
 {
-
+	gravityModifier*=-1;
 }
 
 void Player::Fire()
 {
-
+	const double GRAV_SHOT_SPEED=5.0;
+	Drop(new Bullet(GetX(), GetY(), GRAV_SHOT_SPEED, mAngleVec.vec, GetWorld()));
 }
 
 void Player::Hurt()

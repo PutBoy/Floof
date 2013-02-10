@@ -9,8 +9,7 @@
 
 int main()
 {
-
-	SFMLWindow* window = SFMLWindow::Init(1920,1080, "apa");
+	SFMLWindow* window = SFMLWindow::Init(1366,768, "apa");
 	Display* display = Display::Acquire();
 	Canvas* canvas = Canvas::Aquire();
 

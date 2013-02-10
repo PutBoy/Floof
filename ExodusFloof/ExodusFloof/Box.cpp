@@ -1,6 +1,7 @@
 #include "Box.h"
 #include <cmath>
 #include "SimpleImageJob.h"
+#include "Collision.h"
 
 Box::Box(double x, double y, int gravity, b2World& world):
 	GameObject(x, y, world),
@@ -57,8 +58,21 @@ void Box::Update(){
 		if (GetVelocityX() < 0)
 			SetVelocityX(0);
 	}
+
+	GameObject::Update();
+
 	*/
 	//GameObject::Update();
+	Collision* collision = GetNextCollision();
+	while (collision)
+	{
+		if (collision->GetGameObject()->IsID("Bullet"))
+		{
+			collision->GetGameObject()->Kill();
+			ReverseGravity();
+		}
+		collision = GetNextCollision();
+	}
 }
 
 void Box::ReverseGravity(){

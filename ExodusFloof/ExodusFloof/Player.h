@@ -7,6 +7,7 @@
 #include <fstream>
 #include "AngleVec.h"
 #include "Collidable.h"
+#include "Bullet.h"
 
 
 enum KeyBind {KEY_LEFT, KEY_RIGHT, KEY_UP, KEY_DOWN, KEY_JUMP, KEY_FIRE,KEY_PUSH};
@@ -56,7 +57,11 @@ private:
 	double jumpVelo;
 	double walkSpeed;
 
+	sf::Clock mLastGravShot;
+	bool mFirstShot;
+
 	b2Body* mBody;
+
 };
 
 #endif
