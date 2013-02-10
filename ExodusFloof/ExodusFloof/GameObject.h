@@ -7,10 +7,12 @@
 #include <vector>
 #include <string>
 
+#include <Box2D\Box2D.h>
+
 struct Collision;
 class GameObject{
 public:
-	GameObject(double x, double y, double weigth);
+	GameObject(double x, double y, b2World& world);
 	~GameObject();
 
 	double GetX() {return mX;};
@@ -52,6 +54,8 @@ public:
 	bool IsID(std::string ID) {return ID == mID;};
 	void SetID(std::string ID) {mID = ID;};
 
+
+	b2World& GetWorld() {return mWorld;};
 private:	
 	
 	std::vector<GameObject*> drops;
@@ -71,8 +75,8 @@ private:
 	std::string mID;
 
 	double mWeight;
-protected:
 	
+	b2World& mWorld;
 
 	Canvas* canvas;
 

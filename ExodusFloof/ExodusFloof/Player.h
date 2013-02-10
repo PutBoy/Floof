@@ -14,7 +14,9 @@ enum KeyBind {KEY_LEFT, KEY_RIGHT, KEY_UP, KEY_DOWN, KEY_JUMP, KEY_FIRE,KEY_PUSH
 class Player: public GameObject
 {
 public:
-	Player(Input& input, double x, double y, int playerNumber);
+	Player(Input& input, double x, double y, int playerNumber, b2World& world);
+	~Player();
+
 	void Update();
 	void Render();
 
@@ -53,6 +55,8 @@ private:
 
 	double jumpVelo;
 	double walkSpeed;
+
+	b2Body* mBody;
 };
 
 #endif

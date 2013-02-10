@@ -3,9 +3,9 @@
 
 #include <cmath>
 #include <ctime>
-LevelCreator::LevelCreator(size_t tilesX, size_t tilesY)
+LevelCreator::LevelCreator(size_t tilesX, size_t tilesY, b2World& world)
 {
-	internalCreateLevel(tilesX, tilesY);
+	internalCreateLevel(tilesX, tilesY, world);
 }
 
 std::vector<Floof*>::iterator LevelCreator::iterBegin()
@@ -17,7 +17,7 @@ std::vector<Floof*>::iterator LevelCreator::iterEnd()
 	return floofs.end();
 }
 
-void LevelCreator::internalCreateLevel(size_t tilesX, size_t tilesY)
+void LevelCreator::internalCreateLevel(size_t tilesX, size_t tilesY, b2World& world)
 {
 	std::srand(std::time(NULL));
 
@@ -28,12 +28,12 @@ void LevelCreator::internalCreateLevel(size_t tilesX, size_t tilesY)
 	{
 		for (size_t floor = 0; floor < floorH; floor++)
 		{
-			floofs.push_back(new Floof(i * 64 + 32, 64 * tilesY - floor * 64 + 32));
+			floofs.push_back(new Floof(i * 64 + 32, 64 * tilesY - floor * 64 + 32, world));
 		}
 
 		for (size_t roof = 0; roof < roofH; roof++)
 		{
-			floofs.push_back(new Floof(i * 64 + 32, roof * 64 + 32));
+			floofs.push_back(new Floof(i * 64 + 32, roof * 64 + 32, world));
 			
 		}
 

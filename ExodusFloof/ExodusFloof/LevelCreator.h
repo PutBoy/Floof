@@ -5,18 +5,19 @@
  */
 
 #include <vector>
+#include <Box2D\Dynamics\b2World.h>
 
 class Floof;
 
 class LevelCreator
 {
 public:
-	LevelCreator(size_t tilesX, size_t tilesY);
+	LevelCreator(size_t tilesX, size_t tilesY, b2World& world);
 	std::vector<Floof*>::iterator iterBegin();
 	std::vector<Floof*>::iterator iterEnd();
 
 private:
-	void internalCreateLevel(size_t tilesX, size_t tilesY);
+	void internalCreateLevel(size_t tilesX, size_t tilesY, b2World& world);
 	std::vector<Floof*> floofs;
 };
 

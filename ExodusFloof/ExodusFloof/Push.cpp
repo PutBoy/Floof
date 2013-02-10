@@ -1,6 +1,6 @@
 #include "Push.h"
 #include "Collision.h"
-
+#include <Box2D\Box2D.h>
 
 Push::Push(double x, double y, GameObject* pusherObj)
 	:mX(x)
@@ -8,7 +8,7 @@ Push::Push(double x, double y, GameObject* pusherObj)
 	,mPusherObj(pusherObj)
 	,mOriginX(pusherObj->GetX())
 	,mOriginY(pusherObj->GetY())
-	,GameObject(x, y, 0)
+	,GameObject(x, y, b2World(b2Vec2()))  //DUMMY
 	,mFrameCount(0)
 {
 	SetSizeX(32);

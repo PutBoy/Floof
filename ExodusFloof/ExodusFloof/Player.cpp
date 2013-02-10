@@ -10,10 +10,10 @@
 #include "Collision.h"
 #include "Push.h"
 
-Player::Player(Input& input, double x, double y, int playerNumber):
+Player::Player(Input& input, double x, double y, int playerNumber, b2World& world):
 	mPlayerNumber(playerNumber),
 	mInput(input),
-	GameObject(x, y, 0.5),
+	GameObject(x, y, world),
 	mAngleVec(0, sf::Vector2f(0,0))
 {
 	Config config;
@@ -42,6 +42,26 @@ Player::Player(Input& input, double x, double y, int playerNumber):
 	mAngleVec = mInput.Aim(sf::Vector2f(GetX(), GetY()));
 
 	mAnimFrame = 0;
+
+	b2BodyDef bodyDef;
+	bodyDef.position.Set(x / 32.f, y / 32.f);
+	bodyDef.type = b2_dynamicBody;
+	mBody = world.CreateBody(&bodyDef);
+
+	b2PolygonShape dynamicBox;
+	dynamicBox.SetAsBox(1.0f, 1.0f);
+
+	b2FixtureDef fixtureDef;
+	fixtureDef.shape = &dynamicBox;
+	fixtureDef.density = 1.0f;
+	fixtureDef.friction = 0.3f;
+
+	mBody->CreateFixture(&fixtureDef);
+}
+
+Player::~Player()
+{
+	GetWorld().DestroyBody(mBody);
 }
 
 void Player::Render()
@@ -58,6 +78,9 @@ void Player::Render()
 
 void Player::Update()
 {
+	SetX(mBody->GetPosition().x * 32.f);
+	SetY(mBody->GetPosition().y * 32.f);
+
 	mAnimFrame++;
 
 	mAction = "";
@@ -103,7 +126,6 @@ void Player::Update()
 		if (mAction != "jump")
 			mAction = "walk";
 
-		SetVelocityX(-walkSpeed);
 	}
 	else if (mInput.WalkRight())
 	{

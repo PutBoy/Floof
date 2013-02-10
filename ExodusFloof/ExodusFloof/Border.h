@@ -8,7 +8,7 @@
 class Border:public GameObject
 {
 public:
-	Border(/*FloofContainer* floors, */int y, bool right);
+	Border(int y, bool right, b2World& world);
 	void Render();
 	void Update();
 

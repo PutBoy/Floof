@@ -5,7 +5,7 @@
 #include "GameObject.h"
 #include "CollisionHandler.h"
 #include <Box2D/Dynamics/b2World.h>
-
+#include <SFML\System\Clock.hpp>
 
 class Game : public GameState
 {
@@ -24,6 +24,8 @@ private:
 
 	std::vector<GameObject*> objects;
 	CollisionHandler collider;
+
+	sf::Clock worldTimer;
 
 
 };
