@@ -77,23 +77,17 @@ void Player::Render()
 	if (mAction == "walk")
 		mAction = "walk";
 
-<<<<<<< HEAD
-	GetCanvas()->AddNewJob(new DynamicImageJob("bunny", GetX(), GetY(), mAnimFrame / 20, mAction, mAngleVec.angle), 1);
-=======
+
 	GetCanvas()->AddNewJob(new DynamicImageJob("bunny", GetX()-32.f, GetY()-32.f, mAnimFrame / 20, mAction, mAngleVec.angle), 1);
->>>>>>> Nehro
+
 	GetCanvas()->AddNewJob(new DebugTextJob(ss.str(), 0, 0), 1);
 }
 
 void Player::Update()
 {
-<<<<<<< HEAD
 	SetX(mBody->GetPosition().x);
 	SetY(mBody->GetPosition().y);
 
-=======
-	std::cout <<"spriteX: "<< GetY()<<" "<<"bodyX: "<< mBody->GetPosition().y<<std::endl;
->>>>>>> Nehro
 	mAnimFrame++;
 
 	mAction = "";
