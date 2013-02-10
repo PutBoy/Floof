@@ -24,7 +24,7 @@ Game::Game()
 	{
 		objects.push_back(*iter);
 	}
-	
+
 	objects.push_back(new Player(Input(new StrategyKeysAndMouse()), 400, 400, 1, mBoxWorld));
 	//objects.push_back(new Player(Input(new StrategyKeys()), 700, 400, 0, mBoxWorld));
 
