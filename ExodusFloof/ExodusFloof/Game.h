@@ -4,6 +4,8 @@
 #include "GameState.h"
 #include "GameObject.h"
 #include "CollisionHandler.h"
+#include <Box2D/Dynamics/b2World.h>
+
 
 class Game : public GameState
 {
@@ -18,6 +20,8 @@ protected:
 	void Render();
 
 private:
+	b2World mBoxWorld;
+
 	std::vector<GameObject*> objects;
 	CollisionHandler collider;
 

@@ -14,6 +14,7 @@
 #include "Floof.h"
 
 Game::Game()
+	:mBoxWorld(b2Vec2(0.f, 10.f))
 {
 
 }
