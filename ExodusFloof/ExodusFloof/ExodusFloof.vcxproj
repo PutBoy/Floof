@@ -100,7 +100,6 @@
     <ClCompile Include="Floof.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="ImageLoader.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Job.cpp" />
@@ -111,6 +110,8 @@
     <ClCompile Include="Push.cpp" />
     <ClCompile Include="SFMLWindow.cpp" />
     <ClCompile Include="SimpleImageJob.cpp" />
+    <ClCompile Include="State.cpp" />
+    <ClCompile Include="StateHandler.cpp" />
     <ClCompile Include="StaticObject.cpp" />
     <ClCompile Include="StrategyKeys.cpp" />
     <ClCompile Include="StrategyKeysAndMouse.cpp" />
@@ -145,7 +146,6 @@
     <ClInclude Include="Floof.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
-    <ClInclude Include="GameState.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImageLoader.h" />
     <ClInclude Include="Input.h" />
@@ -157,6 +157,8 @@
     <ClInclude Include="Push.h" />
     <ClInclude Include="SFMLWindow.h" />
     <ClInclude Include="SimpleImageJob.h" />
+    <ClInclude Include="State.h" />
+    <ClInclude Include="StateHandler.h" />
     <ClInclude Include="StaticObject.h" />
     <ClInclude Include="StrategyKeys.h" />
     <ClInclude Include="StrategyKeysAndMouse.h" />

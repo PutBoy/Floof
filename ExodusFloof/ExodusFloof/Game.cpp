@@ -17,15 +17,7 @@ Game::Game()
 	:mBoxWorld(b2Vec2(0.f, 10.f))
 {
 	worldTimer.restart();
-}
 
-Game::~Game()
-{
-
-}
-
-void Game::Start()
-{
 	LevelCreator level(20, 9, mBoxWorld);
 	
 	for (auto iter = level.iterBegin(); iter != level.iterEnd(); ++iter)
@@ -45,8 +37,13 @@ void Game::Start()
 		//objects.push_back(new Border(i*64, true)); 
 	}
 
-	StartLoop();
 }
+
+Game::~Game()
+{
+
+}
+
 
 void Game::Render()
 {
@@ -59,7 +56,7 @@ void Game::Render()
 
 }
 
-void Game::Update(int frame)
+void Game::Update()
 {
 
 	float32 timeStep = worldTimer.restart().asMilliseconds();
@@ -111,5 +108,15 @@ void Game::Update(int frame)
 			i--;
 		}
 	}
+
+}
+
+bool Game::IsAlive()
+{
+	return true;
+}
+
+void Game::Kill()
+{
 
 }

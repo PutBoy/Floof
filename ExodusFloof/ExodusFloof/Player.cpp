@@ -72,8 +72,7 @@ void Player::Render()
 	if (mAction == "walk")
 		mAction = "walk";
 
-	GetCanvas()->AddNewJob(new DynamicImageJob("don", GetX(), GetY(), mAnimFrame / 20, mAction, mAngleVec.angle), 1);
-	GetCanvas()->AddNewJob(new DynamicImageJob("donarm", GetX(), GetY(), mAnimFrame / 20, mAction, mAngleVec.angle), 1);
+	GetCanvas()->AddNewJob(new DynamicImageJob("bunny", GetX(), GetY(), mAnimFrame / 20, mAction, mAngleVec.angle), 1);
 	GetCanvas()->AddNewJob(new DebugTextJob(ss.str(), 0, 0), 1);
 }
 

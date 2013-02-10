@@ -1,23 +1,24 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "GameState.h"
+#include "State.h"
 #include "GameObject.h"
 #include "CollisionHandler.h"
 #include <Box2D/Dynamics/b2World.h>
 #include <SFML\System\Clock.hpp>
 
-class Game : public GameState
+class Game : public State
 {
 public:
 	Game();
-	void Start();
 	virtual ~Game();
 
-protected:
-
-	void Update(int frame);
+	void Update();
 	void Render();
+
+	virtual bool IsAlive();
+
+	virtual void Kill();
 
 private:
 	b2World mBoxWorld;
