@@ -1,24 +1,66 @@
-﻿Build started 2012-12-18 19:40:20.
-     1>Project "C:\floof\ExodusFloof\ExodusFloof\ExodusFloof.vcxproj" on node 2 (build target(s)).
+﻿Build started 2013-02-10 13:39:06.
+     1>Project "C:\Floof\Floof\ExodusFloof\ExodusFloof\ExodusFloof.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Creating "Debug\ExodusFloof.unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "Debug\ExodusFloof.unsuccessfulbuild".
        ClCompile:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Game.cpp Player.cpp
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt AnimationJob.cpp AnimationLoader.cpp Box.cpp Canvas.cpp DebugTextJob.cpp Display.cpp DynamicImageJob.cpp DynamicImageLoader.cpp Game.cpp GameObject.cpp GameState.cpp ImageLoader.cpp Input.cpp Job.cpp Player.cpp SFMLWindow.cpp SimpleImageJob.cpp StrategyKeys.cpp StrategyKeysAndMouse.cpp main.cpp
+         main.cpp
+         StrategyKeysAndMouse.cpp
+     1>c:\floof\floof\exodusfloof\exodusfloof\strategykeysandmouse.cpp(42): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\floof\floof\exodusfloof\exodusfloof\strategykeysandmouse.cpp(43): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\floof\floof\exodusfloof\exodusfloof\strategykeysandmouse.cpp(49): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+         StrategyKeys.cpp
+         SimpleImageJob.cpp
+         SFMLWindow.cpp
          Player.cpp
-     1>c:\floof\exodusfloof\exodusfloof\player.cpp(33): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\floof\exodusfloof\exodusfloof\player.cpp(33): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\floof\exodusfloof\exodusfloof\player.cpp(42): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
-     1>c:\floof\exodusfloof\exodusfloof\player.cpp(42): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\floof\exodusfloof\exodusfloof\player.cpp(42): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\floof\exodusfloof\exodusfloof\player.cpp(50): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\floof\exodusfloof\exodusfloof\player.cpp(50): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-         Generating Code...
-         Skipping... (no relevant changes detected)
+     1>c:\floof\floof\exodusfloof\exodusfloof\player.cpp(33): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\floof\floof\exodusfloof\exodusfloof\player.cpp(33): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\floof\floof\exodusfloof\exodusfloof\player.cpp(42): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>c:\floof\floof\exodusfloof\exodusfloof\player.cpp(42): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\floof\floof\exodusfloof\exodusfloof\player.cpp(42): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\floof\floof\exodusfloof\exodusfloof\player.cpp(50): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\floof\floof\exodusfloof\exodusfloof\player.cpp(50): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+         Job.cpp
+         Input.cpp
+         ImageLoader.cpp
+         GameState.cpp
+         GameObject.cpp
+     1>c:\floof\floof\exodusfloof\exodusfloof\gameobject.cpp(51): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+     1>c:\floof\floof\exodusfloof\exodusfloof\gameobject.cpp(52): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+     1>c:\floof\floof\exodusfloof\exodusfloof\gameobject.cpp(54): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+     1>c:\floof\floof\exodusfloof\exodusfloof\gameobject.cpp(55): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+     1>c:\floof\floof\exodusfloof\exodusfloof\gameobject.cpp(57): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+     1>c:\floof\floof\exodusfloof\exodusfloof\gameobject.cpp(58): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+     1>c:\floof\floof\exodusfloof\exodusfloof\gameobject.cpp(60): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+     1>c:\floof\floof\exodusfloof\exodusfloof\gameobject.cpp(61): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+     1>c:\floof\floof\exodusfloof\exodusfloof\gameobject.cpp(79): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>c:\floof\floof\exodusfloof\exodusfloof\gameobject.cpp(80): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
          Game.cpp
+     1>c:\floof\floof\exodusfloof\exodusfloof\game.cpp(33): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\floof\floof\exodusfloof\exodusfloof\game.cpp(43): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\floof\floof\exodusfloof\exodusfloof\game.cpp(49): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\floof\floof\exodusfloof\exodusfloof\game.cpp(60): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\floof\floof\exodusfloof\exodusfloof\game.cpp(62): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\floof\floof\exodusfloof\exodusfloof\game.cpp(76): warning C4018: '<' : signed/unsigned mismatch
+         DynamicImageLoader.cpp
+         DynamicImageJob.cpp
+         Display.cpp
+     1>c:\floof\floof\exodusfloof\exodusfloof\display.cpp(98): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\floof\floof\exodusfloof\exodusfloof\display.cpp(98): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+         DebugTextJob.cpp
+     1>c:\floof\floof\exodusfloof\exodusfloof\debugtextjob.cpp(12): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\floof\floof\exodusfloof\exodusfloof\debugtextjob.cpp(12): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+         Canvas.cpp
+         Box.cpp
+     1>c:\floof\floof\exodusfloof\exodusfloof\box.cpp(18): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\floof\floof\exodusfloof\exodusfloof\box.cpp(18): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+         AnimationLoader.cpp
+         AnimationJob.cpp
+         Generating Code...
        ManifestResourceCompile:
-         All outputs are up-to-date.
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\ExodusFloof.exe.embed.manifest.res" Debug\ExodusFloof_manifest.rc 
        Link:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\floof\ExodusFloof\Debug\ExodusFloof.exe" /INCREMENTAL /NOLOGO "sfml-audio-d.lib" "sfml-graphics-d.lib" "sfml-main-d.lib" "sfml-network-d.lib" "sfml-system-d.lib" "sfml-window-d.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\ExodusFloof.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\floof\ExodusFloof\Debug\ExodusFloof.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\floof\ExodusFloof\Debug\ExodusFloof.lib" /MACHINE:X86 Debug\ExodusFloof.exe.embed.manifest.res
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Floof\Floof\ExodusFloof\Debug\ExodusFloof.exe" /INCREMENTAL /NOLOGO "sfml-audio-d.lib" "sfml-graphics-d.lib" "sfml-main-d.lib" "sfml-network-d.lib" "sfml-system-d.lib" "sfml-window-d.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\ExodusFloof.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Floof\Floof\ExodusFloof\Debug\ExodusFloof.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Floof\Floof\ExodusFloof\Debug\ExodusFloof.lib" /MACHINE:X86 Debug\ExodusFloof.exe.embed.manifest.res
          Debug\AnimationJob.obj
          Debug\AnimationLoader.obj
          Debug\Box.obj
@@ -48,17 +90,18 @@
          Debug\tinyxmlerror.obj
          Debug\tinyxmlparser.obj
          Debug\Trigonometry.obj
+         LINK : C:\Floof\Floof\ExodusFloof\Debug\ExodusFloof.exe not found or not built by the last incremental link; performing full link
        Manifest:
          C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\ExodusFloof.exe.embed.manifest" /manifest Debug\ExodusFloof.exe.intermediate.manifest
          All outputs are up-to-date.
        LinkEmbedManifest:
          All outputs are up-to-date.
-         ExodusFloof.vcxproj -> C:\floof\ExodusFloof\Debug\ExodusFloof.exe
+         ExodusFloof.vcxproj -> C:\Floof\Floof\ExodusFloof\Debug\ExodusFloof.exe
        FinalizeBuildStatus:
          Deleting file "Debug\ExodusFloof.unsuccessfulbuild".
          Touching "Debug\ExodusFloof.lastbuildstate".
-     1>Done Building Project "C:\floof\ExodusFloof\ExodusFloof\ExodusFloof.vcxproj" (build target(s)).
+     1>Done Building Project "C:\Floof\Floof\ExodusFloof\ExodusFloof\ExodusFloof.vcxproj" (build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:02.95
+Time Elapsed 00:00:23.24
