@@ -1,6 +1,7 @@
 #include "Player.h"
 #include <cmath>
 #include <sstream>
+#include <iostream>
 
 #include "Input.h"
 #include "DynamicImageJob.h"
@@ -44,12 +45,12 @@ Player::Player(Input& input, double x, double y, int playerNumber, b2World& worl
 	mAnimFrame = 0;
 
 	b2BodyDef bodyDef;
-	bodyDef.position.Set(x / 32.f, y / 32.f);
+	bodyDef.position.Set(x,y);
 	bodyDef.type = b2_dynamicBody;
 	mBody = world.CreateBody(&bodyDef);
 
 	b2PolygonShape dynamicBox;
-	dynamicBox.SetAsBox(1.0f, 1.0f);
+	dynamicBox.SetAsBox(32.0f, 32.0f);
 
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &dynamicBox;
@@ -72,15 +73,13 @@ void Player::Render()
 	if (mAction == "walk")
 		mAction = "walk";
 
-	GetCanvas()->AddNewJob(new DynamicImageJob("bunny", GetX() - 32.f, GetY() - 32.f, mAnimFrame / 20, mAction, mAngleVec.angle), 1);
+	GetCanvas()->AddNewJob(new DynamicImageJob("bunny", GetX()-32.f, GetY()-32.f, mAnimFrame / 20, mAction, mAngleVec.angle), 1);
 	GetCanvas()->AddNewJob(new DebugTextJob(ss.str(), 0, 0), 1);
 }
 
 void Player::Update()
 {
-	SetX(mBody->GetPosition().x * 32.f);
-	SetY(mBody->GetPosition().y * 32.f);
-
+	std::cout <<"spriteX: "<< GetY()<<" "<<"bodyX: "<< mBody->GetPosition().y<<std::endl;
 	mAnimFrame++;
 
 	mAction = "";
@@ -101,6 +100,7 @@ void Player::Update()
 	if (mJumping)
 	{
 		mAction = "jump";
+		
 	}
 
 	if (GetVelocityY() == 0)
@@ -108,10 +108,10 @@ void Player::Update()
 		mJumping = false;
 	}
 
-	if (gravityModifier < 0)
+	/*if (gravityModifier < 0)
 		SetVelocityY(GetVelocityY() - 0.05);
 	else
-		SetVelocityY(GetVelocityY() + 0.1);
+		SetVelocityY(GetVelocityY() + 0.1);*/
 
 	if(mInput.Shoot())
 	{
@@ -120,16 +120,20 @@ void Player::Update()
 
 	GameObject::Update();
 
-
+	b2Vec2 velocity = mBody->GetLinearVelocity();
+	velocity.x=0;
+	velocity.y=0;
 	if (mInput.WalkLeft())
 	{
-		if (mAction != "jump")
+		if (mAction != "jump"){
+			
+			velocity.x = -2*mBody->GetMass();
 			mAction = "walk";
-
+		}
 	}
 	else if (mInput.WalkRight())
 	{
-		SetVelocityX(walkSpeed);
+		velocity.x = 2*mBody->GetMass();
 		if (mAction != "jump")
 		mAction = "walk";
 	}
@@ -140,17 +144,21 @@ void Player::Update()
 
 		SetVelocityX(0);
 	}
-
+	
 	if (mInput.Jump() && !mJumping)
 	{
 		if ( GetVelocityY() < 0.15 && GetVelocityY() > -0.15)
 		{
-			SetVelocityY(-jumpVelo);
-			SetY(GetY() -2.f);
+			//SetVelocityY(-jumpVelo);
+			//SetY(GetY() -2.f);
+			mBody->ApplyLinearImpulse(b2Vec2(0,-100),mBody->GetWorldCenter());
 			mJumping = true;
 		}
+		
 	}
 
+	mBody->SetLinearVelocity(velocity);
+	std::cout <<"spriteX: "<< GetY()<<" "<<"bodyX: "<< mBody->GetPosition().y<<std::endl;
 	std::vector<Collision::Direction> floofs;
 	std::vector<Collision::Direction> boxes;
 
@@ -199,6 +207,9 @@ void Player::Update()
 	{
 		Drop(new Push(GetX() + mAngleVec.vec.x * 20, GetY() + mAngleVec.vec.y * 20, this));
 	}
+
+	SetX(mBody->GetPosition().x);
+	SetY(mBody->GetPosition().y);
 
 }
 
