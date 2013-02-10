@@ -6,11 +6,13 @@
 #include <cassert>
 
 AnimationJob::AnimationJob
-	(std::string key, float x, float y, int frameCount):
+	(std::string key, float x, float y, int frameCount, float angle, sf::Vector2i center):
 	mKey(key),
 	mX(x),
 	mY(y),
-	mFrameCount(frameCount)
+	mFrameCount(frameCount),
+	mAngle(angle),
+	mCenter(center)
 {
 	Config cfg;
 	AnimationLoader* anim = dynamic_cast<AnimationLoader*>(cfg.GetLoader("Animation"));
@@ -34,5 +36,5 @@ AnimationJob::AnimationJob
 
 void AnimationJob::Render()
 {
-	GetDisplay()->DrawImage(mKey, mX, mY);
+	GetDisplay()->DrawImage(mKey, mX, mY, mAngle, mCenter);
 }

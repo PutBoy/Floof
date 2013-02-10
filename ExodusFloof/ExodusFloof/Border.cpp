@@ -1,7 +1,7 @@
 #include "Border.h"
 #include "SimpleImageJob.h"
 
-Border::Border(/*FloofContainer* floors,*/int y, bool right):GameObject(/*floors,*/32,y,1)
+Border::Border(int y, bool right, b2World& world):GameObject(32,y, world)
 {
 	display=Display::Acquire();
 	mRight=right;

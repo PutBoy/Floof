@@ -2,7 +2,10 @@
 #include <algorithm>
 #include <cassert>
 
-DynamicImage::DynamicImage()
+DynamicImage::DynamicImage(bool rotateImage, sf::Vector2i center, sf::Vector2i offset)
+	:mRotateImage(rotateImage)
+	,mCenter(center)
+	,mOffset(offset)
 {
 
 }

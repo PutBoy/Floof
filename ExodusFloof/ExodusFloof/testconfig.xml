@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Body>
+  <Character name = "Don">
+    <a jumpVelo ="3.6"/>
+    <a walkSpeed ="2.2"/>
+  </Character>
+
+  <DynamicImage name = "don">
+    <a rotateimage ="false"/>
+    <a centerx ="80" centery="80"/>
+   
+    
+    <Animation>
+      <a frames ="1"/>
+      <a file = "assets/Don testsheet.png"/>
+      <a action = ""/>
+      <a angle = "270"/>
+    </Animation>
+
+  </DynamicImage>
+
+  <DynamicImage name = "donarm">
+    <a rotateimage ="true"/>
+    <a centerx ="113" centery="14"/>
+    <a offsetx="-20" offsety="-15"/>
+    
+    <Animation>
+      <a frames ="1"/>
+      <a file = "assets/Arm testsheet.png"/>
+      <a action = ""/>
+      <a angle = "270"/>
+    </Animation>
+    
+  </DynamicImage>
+
+  <Image name = "Floof">
+    <a file = "assets/platformtexture.png"/>
+  </Image>
+
+  <Image name = "Box">
+    <a file = "assets/woodbox.png"/>
+  </Image>
+
+  <Image name ="BorderRight">
+    <a file ="assets/brickwallright.png"/>
+  </Image>
+
+  <Image name ="BorderLeft">
+    <a file ="assets/brickwallleft.png"/>
+  </Image>
+</Body>

@@ -39,8 +39,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\..\SFML-2.0-rc\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\..\SFML-2.0-rc\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\..\Box2D_v2.2.1;..\..\SFML-2.0-rc\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\Box2D_v2.2.1\Box2D\lib;..\..\SFML-2.0-rc\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -54,12 +54,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\ExodusFloof;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Box2D_v2.2.1;..\..\ExodusFloof;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>sfml-audio-d.lib;sfml-graphics-d.lib;sfml-main-d.lib;sfml-network-d.lib;sfml-system-d.lib;sfml-window-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-audio-d.lib;sfml-graphics-d.lib;sfml-main-d.lib;sfml-network-d.lib;sfml-system-d.lib;box2d.lib;sfml-window-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -101,7 +101,6 @@
     <ClCompile Include="Floof.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="ImageLoader.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Job.cpp" />
@@ -112,6 +111,8 @@
     <ClCompile Include="Push.cpp" />
     <ClCompile Include="SFMLWindow.cpp" />
     <ClCompile Include="SimpleImageJob.cpp" />
+    <ClCompile Include="State.cpp" />
+    <ClCompile Include="StateHandler.cpp" />
     <ClCompile Include="StaticObject.cpp" />
     <ClCompile Include="StrategyKeys.cpp" />
     <ClCompile Include="StrategyKeysAndMouse.cpp" />
@@ -147,7 +148,6 @@
     <ClInclude Include="Floof.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
-    <ClInclude Include="GameState.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImageLoader.h" />
     <ClInclude Include="Input.h" />
@@ -159,6 +159,8 @@
     <ClInclude Include="Push.h" />
     <ClInclude Include="SFMLWindow.h" />
     <ClInclude Include="SimpleImageJob.h" />
+    <ClInclude Include="State.h" />
+    <ClInclude Include="StateHandler.h" />
     <ClInclude Include="StaticObject.h" />
     <ClInclude Include="StrategyKeys.h" />
     <ClInclude Include="StrategyKeysAndMouse.h" />
@@ -168,6 +170,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="config.xml" />
+    <None Include="testconfig.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

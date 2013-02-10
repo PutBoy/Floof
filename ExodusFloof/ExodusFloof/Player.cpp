@@ -10,12 +10,13 @@
 #include "Collision.h"
 #include "Push.h"
 
-Player::Player(Input& input, double x, double y, int playerNumber):
+Player::Player(Input& input, double x, double y, int playerNumber, b2World& world):
+	GameObject(x, y, world),
 	mPlayerNumber(playerNumber),
 	mInput(input),
-	GameObject(x, y, 0.5),
 	mAngleVec(0, sf::Vector2f(0,0)),
 	mFirstShot(true)
+	
 {
 	Config config;
 	CharacterLoader* charLoader = dynamic_cast<CharacterLoader*>(config.GetLoader("Character"));
@@ -43,6 +44,26 @@ Player::Player(Input& input, double x, double y, int playerNumber):
 	mAngleVec = mInput.Aim(sf::Vector2f(GetX(), GetY()));
 
 	mAnimFrame = 0;
+
+	b2BodyDef bodyDef;
+	bodyDef.position.Set(x, y);
+	bodyDef.type = b2_dynamicBody;
+	mBody = world.CreateBody(&bodyDef);
+
+	b2PolygonShape dynamicBox;
+	dynamicBox.SetAsBox(32.0f, 32.0f);
+
+	b2FixtureDef fixtureDef;
+	fixtureDef.shape = &dynamicBox;
+	fixtureDef.density = 1.0f;
+	fixtureDef.friction = 0.3f;
+
+	mBody->CreateFixture(&fixtureDef);
+}
+
+Player::~Player()
+{
+	GetWorld().DestroyBody(mBody);
 }
 
 void Player::Render()
@@ -53,13 +74,16 @@ void Player::Render()
 	if (mAction == "walk")
 		mAction = "walk";
 
-	GetCanvas()->AddNewJob(new DynamicImageJob("bunny", GetX() - 32.f, GetY() - 32.f, mAnimFrame / 20, mAction, mAngleVec.angle), 1);
+	GetCanvas()->AddNewJob(new DynamicImageJob("bunny", GetX(), GetY(), mAnimFrame / 20, mAction, mAngleVec.angle), 1);
 	GetCanvas()->AddNewJob(new DebugTextJob(ss.str(), 0, 0), 1);
 }
 
 void Player::Update()
 {
 	const double GRAV_SHOT_WAIT=1.0;
+
+	SetX(mBody->GetPosition().x);
+	SetY(mBody->GetPosition().y);
 
 	mAnimFrame++;
 
@@ -101,7 +125,7 @@ void Player::Update()
 		Fire();
 	}
 
-	GameObject::Update();
+	//GameObject::Update();
 
 
 	if (mInput.WalkLeft())
@@ -109,7 +133,6 @@ void Player::Update()
 		if (mAction != "jump")
 			mAction = "walk";
 
-		SetVelocityX(-walkSpeed);
 	}
 	else if (mInput.WalkRight())
 	{

@@ -1,7 +1,8 @@
 #include "GameObject.h"
 
 
-GameObject::GameObject(double x, double y, double weight)
+GameObject::GameObject(double x, double y, b2World& world)
+	:mWorld(world)
 {
 	mX = x;
 	mY = y;
@@ -13,7 +14,6 @@ GameObject::GameObject(double x, double y, double weight)
 	mVelocityX = 0;
 	mVelocityY = 0;
 
-	mWeight = weight;
 
 }
 
