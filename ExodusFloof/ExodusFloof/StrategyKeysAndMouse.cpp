@@ -34,7 +34,15 @@ bool StrategyKeysAndMouse::Jump() const{
 		return false;
 }
 
-AngleVec StrategyKeysAndMouse::Aim(sf::Vector2f position) const{
+bool StrategyKeysAndMouse::Push() const
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl))
+		return true;
+	else
+		return false;
+}
+
+AngleVec StrategyKeysAndMouse::Aim(sf::Vector2f position){
 	sf::Vector2f aim;
 	sf::Vector2f shoot;
 
@@ -43,6 +51,7 @@ AngleVec StrategyKeysAndMouse::Aim(sf::Vector2f position) const{
 	aim.y = sf::Mouse::getPosition(GetSFMLWindow()->GetWindow()).y;
 	
 	shoot = aim - position;
+	shoot = shoot * (1 / std::sqrt(shoot.x * shoot.x + shoot.y * shoot.y));
 
 	double shootAngle = atan2(shoot.y, shoot.x);
 

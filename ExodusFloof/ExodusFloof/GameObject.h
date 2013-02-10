@@ -2,14 +2,17 @@
 #define _GAMEOBJECT_H
 
 #include "Canvas.h"
+#include "ColliderComponent.h"
 
 #include <vector>
 #include <string>
 
+struct Collision;
 class GameObject{
 public:
-	GameObject(int x, int y);
-	
+	GameObject(int x, int y, double weigth);
+	~GameObject();
+
 	int GetX() {return mX;};
 	int GetY() {return mY;};
 
@@ -22,6 +25,16 @@ public:
 	void SetSizeY(int size) {mSizeY = size;};
 	int GetSizeY() {return mSizeY;};
 
+	void SetVelocityX(double velocityX){mVelocityX = velocityX;};
+	double GetVelocityX(){return mVelocityX;};
+
+	void SetVelocityY(double velocityY){mVelocityY = velocityY;};
+	double GetVelocityY(){return mVelocityY;};
+
+	double GetWeight(){return mWeight;};
+
+	virtual ColliderComponent* GetColliderComponent() = 0;
+
 	virtual void Render() = 0;
 	virtual void Update();
 
@@ -29,22 +42,20 @@ public:
 
 	void Drop(GameObject*);
 	GameObject* GetNextDrop();
+	Collision* GetNextCollision();
 	void Kill();
 	
 	bool Dead();
 
 	virtual void ReverseGravity() { };
-
-	bool TestCollision(GameObject* other);
-
-	virtual void ResolveCollision(GameObject* other) {};
-
+	void PushCollision(Collision* collision);
 	bool IsID(std::string ID) {return ID == mID;};
 	void SetID(std::string ID) {mID = ID;};
 
 private:	
 	
 	std::vector<GameObject*> drops;
+	std::vector<Collision*> collisions;
 
 	int mX;
 	int mY;
@@ -54,10 +65,14 @@ private:
 	int mSizeX;
 	int mSizeY;
 
-	std::string mID;
-protected:
 	double mVelocityX;
 	double mVelocityY;
+
+	std::string mID;
+
+	double mWeight;
+protected:
+	
 
 	Canvas* canvas;
 

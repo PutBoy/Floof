@@ -1,18 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 
   <Body>
-
-    <Image name = "testimage2">
-      <a file = "assets/woodbox.png"/>
-      <rect x1 ="0" x2 ="32" y1 ="0" y2 ="32"/>
+    <Character name = "Don">
+      <a jumpVelo ="3.6"/>
+      <a walkSpeed ="2.2"/>
+    </Character>
+    
+    <Image name = "Floof">
+      <a file = "assets/platformtexture.png"/>
     </Image>
 
+    <Image name = "Box">
+      <a file = "assets/woodbox.png"/>  
+    </Image>
+
+    <Image name ="BorderRight">
+      <a file ="assets/brickwallright.png"/>
+    </Image>
+
+    <Image name ="BorderLeft">
+      <a file ="assets/brickwallleft.png"/>
+    </Image>
+    
     <DynamicImage name = "bunny">
       <Animation>
         <a frames ="1"/>
         <a file = "assets/bunny1230.png"/>
       </Animation>
       <a action = ""/>
+      <a angle = "359"/>
+    </DynamicImage>
+
+    <DynamicImage name = "bunny">
+      <Animation>
+        <a frames ="4"/>
+        <a file = "assets/walkbunny1230.png"/>
+      </Animation>
+      <a action = "walk"/>
       <a angle = "359"/>
     </DynamicImage>
     
@@ -22,6 +46,15 @@
         <a file = "assets/bunny1231.png"/>
       </Animation>
       <a action = ""/>
+      <a angle = "0"/>
+    </DynamicImage>
+
+    <DynamicImage name = "bunny">
+      <Animation>
+        <a frames ="4"/>
+        <a file = "assets/walkbunny1231.png"/>
+      </Animation>
+      <a action = "walk"/>
       <a angle = "0"/>
     </DynamicImage>
     
@@ -36,10 +69,28 @@
     
     <DynamicImage name = "bunny">
       <Animation>
+        <a frames ="4"/>
+        <a file = "assets/walkbunny1251.png"/>
+      </Animation>
+      <a action = "walk"/>
+      <a angle = "45"/>
+    </DynamicImage>
+    
+    <DynamicImage name = "bunny">
+      <Animation>
         <a frames ="1"/>
         <a file = "assets/bunny1211.png"/>
       </Animation>
       <a action = ""/>
+      <a angle = "90"/>
+    </DynamicImage>
+
+    <DynamicImage name = "bunny">
+      <Animation>
+        <a frames ="4"/>
+        <a file = "assets/walkbunny1211.png"/>
+      </Animation>
+      <a action = "walk"/>
       <a angle = "90"/>
     </DynamicImage>
     
@@ -54,10 +105,28 @@
     
     <DynamicImage name = "bunny">
       <Animation>
+        <a frames ="4"/>
+        <a file = "assets/walkbunny1261.png"/>
+      </Animation>
+      <a action = "walk"/>
+      <a angle = "135"/>
+    </DynamicImage>
+    
+    <DynamicImage name = "bunny">
+      <Animation>
         <a frames ="1"/>
         <a file = "assets/bunny1221.png"/>
       </Animation>
       <a action = ""/>
+      <a angle = "180"/>
+    </DynamicImage>
+    
+    <DynamicImage name = "bunny">
+      <Animation>
+        <a frames ="4"/>
+        <a file = "assets/walkbunny1221.png"/>
+      </Animation>
+      <a action = "walk"/>
       <a angle = "180"/>
     </DynamicImage>
     
@@ -69,7 +138,16 @@
       <a action = ""/>
       <a angle = "181"/>
     </DynamicImage>
-    
+
+    <DynamicImage name = "bunny">
+      <Animation>
+        <a frames ="4"/>
+        <a file = "assets/walkbunny1220.png"/>
+      </Animation>
+      <a action = "walk"/>
+      <a angle = "181"/>
+    </DynamicImage>
+
     <DynamicImage name = "bunny">
       <Animation>
         <a frames ="1"/>
@@ -81,10 +159,28 @@
     
     <DynamicImage name = "bunny">
       <Animation>
+        <a frames ="4"/>
+        <a file = "assets/walkbunny1270.png"/>
+      </Animation>
+      <a action = "walk"/>
+      <a angle = "225"/>
+    </DynamicImage>
+
+    <DynamicImage name = "bunny">
+      <Animation>
         <a frames ="1"/>
         <a file = "assets/bunny1200.png"/>
       </Animation>
       <a action = ""/>
+      <a angle = "270"/>
+    </DynamicImage>
+    
+    <DynamicImage name = "bunny">
+      <Animation>
+        <a frames ="4"/>
+        <a file = "assets/walkbunny1200.png"/>
+      </Animation>
+      <a action = "walk"/>
       <a angle = "270"/>
     </DynamicImage>
 
@@ -96,7 +192,16 @@
       <a action = ""/>
       <a angle = "315"/>
     </DynamicImage>
-    
+
+    <DynamicImage name = "bunny">
+      <Animation>
+        <a frames ="4"/>
+        <a file = "assets/walkbunny1240.png"/>
+      </Animation>
+      <a action = "walk"/>
+      <a angle = "315"/>
+    </DynamicImage>
+
     <DynamicImage name ="bunny">
       <Animation>
         <a frames ="1"/>

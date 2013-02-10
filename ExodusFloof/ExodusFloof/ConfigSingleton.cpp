@@ -6,6 +6,7 @@
 #include "AnimationLoader.h"
 #include "ImageLoader.h"
 #include "DynamicImageLoader.h"
+#include "CharacterLoader.h"
 
 #include <iterator>
 
@@ -35,6 +36,7 @@ ConfigSingleton::ConfigSingleton()
 	configLoaders.insert(loaderPair("Animation", new AnimationLoader()));
 	configLoaders.insert(loaderPair("Image", new ImageLoader()));
 	configLoaders.insert(loaderPair("DynamicImage", new DynamicImageLoader()));
+	configLoaders.insert(loaderPair("Character", new CharacterLoader()));
 
 }
 

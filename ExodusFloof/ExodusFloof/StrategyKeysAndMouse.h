@@ -13,9 +13,10 @@ public:
 	StrategyKeysAndMouse(){};
 	virtual bool WalkLeft() const;
 	virtual bool WalkRight() const;
-	virtual AngleVec Aim(sf::Vector2f position) const;
+	virtual AngleVec Aim(sf::Vector2f position);
 	virtual bool Shoot() const;
 	virtual bool Jump() const;
+	virtual bool Push() const;
 
 	virtual InputStrategy* clone() const;
 private:

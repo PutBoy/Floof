@@ -3,6 +3,7 @@
 
 #include "GameState.h"
 #include "GameObject.h"
+#include "CollisionHandler.h"
 
 class Game : public GameState
 {
@@ -18,6 +19,8 @@ protected:
 
 private:
 	std::vector<GameObject*> objects;
+	CollisionHandler collider;
+
 
 };
 #endif

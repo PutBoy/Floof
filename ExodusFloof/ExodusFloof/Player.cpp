@@ -5,22 +5,31 @@
 #include "Input.h"
 #include "DynamicImageJob.h"
 #include "DebugTextJob.h"
+#include "Config.h"
+#include "CharacterLoader.h"
+#include "Collision.h"
+#include "Push.h"
 
 Player::Player(Input& input, int x, int y, int playerNumber):
 	mPlayerNumber(playerNumber),
 	mInput(input),
-	GameObject(x, y),
+	GameObject(x, y, 0.5),
 	mAngleVec(0, sf::Vector2f(0,0))
 {
+	Config config;
+	CharacterLoader* charLoader = dynamic_cast<CharacterLoader*>(config.GetLoader("Character"));
+	
+	jumpVelo = charLoader->getDouble("Don", "jumpVelo");
+	walkSpeed = charLoader->getDouble("Don", "walkSpeed");
+
 	acc = 0;
 
 	gravityModifier = 1;
 
 	mJumping = false;
-	mFalling = false;
 
 	push=false;
-	SetSizeX(46);
+	SetSizeX(40);
 	SetSizeY(64);
 
 	SetID("Player");
@@ -31,20 +40,26 @@ Player::Player(Input& input, int x, int y, int playerNumber):
 	lives = 3;
 
 	mAngleVec = mInput.Aim(sf::Vector2f(GetX(), GetY()));
+
+	mAnimFrame = 0;
 }
 
 void Player::Render()
 {
 	std::stringstream ss;
-	ss << mAngleVec.angle << std::endl;
-	ss << mAngleVec.vec.x << std::endl;
-	ss << mAngleVec.vec.y << std::endl;
-	GetCanvas()->AddNewJob(new DynamicImageJob("bunny", GetX() - 32, GetY() - 32, 0, mAction, mAngleVec.angle), 0);
+	ss << GetY() << std::endl;
+
+	if (mAction == "walk")
+		mAction = "walk";
+
+	GetCanvas()->AddNewJob(new DynamicImageJob("bunny", GetX() - 32, GetY() - 32, mAnimFrame / 20, mAction, mAngleVec.angle), 1);
 	GetCanvas()->AddNewJob(new DebugTextJob(ss.str(), 0, 0), 1);
 }
 
 void Player::Update()
 {
+	mAnimFrame++;
+
 	mAction = "";
 
 	mAngleVec = mInput.Aim(sf::Vector2f(GetX(), GetY()));
@@ -63,33 +78,17 @@ void Player::Update()
 	if (mJumping)
 	{
 		mAction = "jump";
-
-		if (gravityModifier < 0 && mVelocityY < 0)
-		{
-			mFalling = true;
-		}
-		else if(gravityModifier > 0 && mVelocityY > 0)
-		{
-			mFalling = true;
-		}
 	}
 
-	if (GetY() >= 500)
-	{
-		mVelocityY = 0;
-		SetY(500);
-	}
-
-	if (mFalling && mVelocityY == 0)
+	if (GetVelocityY() == 0)
 	{
 		mJumping = false;
-		mFalling = false;
 	}
 
 	if (gravityModifier < 0)
-		mVelocityY -= 0.05;
+		SetVelocityY(GetVelocityY() - 0.05);
 	else
-		mVelocityY += 0.1;
+		SetVelocityY(GetVelocityY() + 0.1);
 
 	if(mInput.Shoot())
 	{
@@ -101,76 +100,88 @@ void Player::Update()
 
 	if (mInput.WalkLeft())
 	{
-		mVelocityX = -1;
+		if (mAction != "jump")
+			mAction = "walk";
+
+		SetVelocityX(-walkSpeed);
 	}
 	else if (mInput.WalkRight())
 	{
-		mVelocityX = 1;
+		SetVelocityX(walkSpeed);
+		if (mAction != "jump")
+		mAction = "walk";
 	}
 	else
 	{ 
-		mVelocityX = 0;
+		if (mAction != "jump")
+			mAction = "";
+
+		SetVelocityX(0);
 	}
 
 	if (mInput.Jump() && !mJumping)
 	{
-		mVelocityY = -2;
-		SetY(GetY() -2);
-		mJumping = true;
+		if ( GetVelocityY() < 0.15 && GetVelocityY() > -0.15)
+		{
+			SetVelocityY(-jumpVelo);
+			SetY(GetY() -2);
+			mJumping = true;
+		}
+	}
+
+	std::vector<Collision::Direction> floofs;
+	std::vector<Collision::Direction> boxes;
+
+	Collision* collision = GetNextCollision();
+	while (collision)
+	{
+		if (collision->GetGameObject()->IsID("Box"))
+		{
+			boxes.push_back(collision->GetDirection());
+		}
+		if (collision->GetGameObject()->IsID("Floof"))
+		{
+			floofs.push_back(collision->GetDirection());
+		}
+
+		collision = GetNextCollision();
+	}
+
+	if (!floofs.empty() && !boxes.empty())
+	{
+		for (size_t i = 0; i < floofs.size(); i++)
+		{
+			for (size_t j = 0; j < boxes.size(); j++)
+			{
+				if (mPlayerNumber == 0)
+					mPlayerNumber = mPlayerNumber;
+				//Compensate for gravity
+				if(boxes[j] == Collision::DOWN && floofs[i] == Collision::UP){
+					Kill();
+				}
+				else if(boxes[j] == Collision::UP && floofs[i] == Collision::DOWN){
+					Kill();
+				}
+				//Irregardless of gravity
+				else if(boxes[j]== Collision::LEFT && floofs[i] == Collision::RIGHT){
+					Kill();
+				}
+				else if(boxes[j]== Collision::RIGHT && floofs[i] == Collision::LEFT){
+					Kill();
+				}
+			}
+		}
+	}
+
+	if (mInput.Push())
+	{
+		Drop(new Push(GetX() + mAngleVec.vec.x * 20, GetY() + mAngleVec.vec.y * 20, this));
 	}
 
 }
 
 void Player::ReverseGravity()
 {
-
-}
-
-void Player::ResolveCollision(GameObject* other)
-{
-	if(other->IsID("Box"))
-	{
-		boxCollided = true;
-
-		int diffX = GetX() - other->GetX();
-		int diffY = GetY() - other->GetY();
-
-		if(std::abs(diffY) > std::abs(diffX))
-		{
-			if(diffY > 0)
-			{
-				SetY(other->GetY() + (GetSizeY() + other->GetSizeY()) / 2);
-
-				if (mVelocityY < 0)
-					mVelocityY = 0;
-			}
-			else
-			{
-				SetY(other->GetY() - (GetSizeY() + other->GetSizeY()) / 2);
-
-				if (mVelocityY > 0)
-					mVelocityY = 0;
-			}
-
-		}
-		else
-		{
-			if(diffX > 0)
-			{
-				SetX(other->GetX() + (GetSizeX() + other->GetSizeX()) / 2 + 2);
-
-				if (mVelocityX < 0)
-					mVelocityX = 0;
-			}
-			else
-			{
-				SetX(other->GetX() - (GetSizeX() + other->GetSizeX()) / 2 - 2);
-
-				if (mVelocityX > 0)
-					mVelocityX = 0;
-			}
-		}
-	}
 
 }
 

@@ -3,73 +3,28 @@
 #include "SimpleImageJob.h"
 
 Box::Box(int x, int y, int gravity):
-	GameObject(x, y),
+	GameObject(x, y, 0.2),
 	gravityModifier(gravity)
 {
 
-	SetSizeY(64);
-	SetSizeX(63);
+	SetSizeY(62);
+	SetSizeX(62);
 	SetID("Box");
 
 }
 
 void Box::Render()
 {
-	GetCanvas()->AddNewJob(new SimpleImageJob("box", GetX(), GetY()), 0);
+	GetCanvas()->AddNewJob(new SimpleImageJob("Box", GetX() - 32, GetY() - 32), 0);
 }
+
 void Box::Update(){
 
-	mVelocityY += 0.1 * gravityModifier;
+	SetVelocityY(GetVelocityY() + 0.1 * gravityModifier);
 
 	GameObject::Update();
-
 }
+
 void Box::ReverseGravity(){
 	gravityModifier = -gravityModifier;
-}
-
-void Box::ResolveCollision(GameObject* other){
-
-	if(other->IsID("Box"))
-		{
-		
-		int diffX = GetX() - other->GetX();
-		int diffY = GetY() - other->GetY();
-
-		if(std::abs(diffY) > std::abs(diffX))
-		{
-			if(diffY > 0)
-			{
-				SetY(other->GetY() + (GetSizeY() + other->GetSizeY()) / 2);
-
-				if (mVelocityY < 0)
-					mVelocityY = 0;
-			}
-			else
-			{
-				SetY(other->GetY() - (GetSizeY() + other->GetSizeY()) / 2);
-
-				if (mVelocityY > 0)
-					mVelocityY = 0;
-
-			}
-		}
-		else
-		{
-			if(diffX > 0)
-			{
-				SetX(other->GetX() + (GetSizeX() + other->GetSizeX()) / 2);
-
-				if (mVelocityX < 0)
-					mVelocityX = 0;
-			}
-			else
-			{
-				SetX(other->GetX() - (GetSizeX() + other->GetSizeX()) / 2);
-
-				if (mVelocityX > 0)
-					mVelocityX = 0;
-			}
-		}
-	}
 }

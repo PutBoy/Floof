@@ -26,6 +26,7 @@ public:
 	AngleVec Aim(sf::Vector2f position) const;
 	bool Shoot()const;
 	bool Jump() const;
+	virtual bool Push() const;
 private:
 	InputStrategy* mInputStrategy;
 };

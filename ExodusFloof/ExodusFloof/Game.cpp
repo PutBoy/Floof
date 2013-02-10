@@ -8,6 +8,10 @@
 #include "Config.h"
 #include "Input.h"
 #include "StrategyKeysAndMouse.h"
+#include "LevelCreator.h"
+#include "Border.h"
+#include "StrategyKeys.h"
+#include "Floof.h"
 
 Game::Game()
 {
@@ -21,7 +25,24 @@ Game::~Game()
 
 void Game::Start()
 {
-	objects.push_back(new Player(Input(new StrategyKeysAndMouse()), 400, 400, 0));
+	LevelCreator level(20, 9);
+	
+	for (auto iter = level.iterBegin(); iter != level.iterEnd(); ++iter)
+	{
+		objects.push_back(*iter);
+	}
+	
+	objects.push_back(new Player(Input(new StrategyKeysAndMouse()), 400, 400, 1));
+	objects.push_back(new Player(Input(new StrategyKeys()), 700, 400, 0));
+
+	//objects.push_back(new Box(500, 300, 1));
+	objects.push_back(new Box(600, 400, 1));
+
+	for (int i=0; i<10; i++)
+	{
+		//objects.push_back(new Border(i*64, false)); 
+		//objects.push_back(new Border(i*64, true)); 
+	}
 
 	StartLoop();
 }
@@ -39,6 +60,19 @@ void Game::Render()
 
 void Game::Update(int frame)
 {
+	sf::RenderWindow& window=SFMLWindow::Acquire()->GetWindow();
+	sf::View view(window.getView());
+	//view.move(1,0);
+	window.setView(view);
+
+	//Collider
+	for(int i = 0; i < objects.size(); i++)
+	{
+		collider.Push(objects[i]->GetColliderComponent());
+	}
+	collider.Collide();
+	collider.Clear();
+
 	//Update objects
 	for (int i = 0; i < objects.size(); i++)
 	{
@@ -54,21 +88,6 @@ void Game::Update(int frame)
 		{
 			objects.push_back(tmp);
 			tmp = objects[i]->GetNextDrop();
-		}
-	}
-	//Check Collisions
-	for(int i = 0; i < objects.size(); i++)
-	{
-		for(int j = i; j < objects.size(); j++)
-		{
-			if (i != j)
-			{
-				if (objects[i]->TestCollision(objects[j]))
-				{
-					objects[i]->ResolveCollision(objects[j]);
-					objects[j]->ResolveCollision(objects[i]);
-				}
-			}
 		}
 	}
 

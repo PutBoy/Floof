@@ -1,6 +1,7 @@
 #include "Input.h"
 #include "InputStrategy.h"
 #include "AngleVec.h"
+#include "SFMLWindow.h"
 
 Input::Input(InputStrategy* inputStrategy):
 	mInputStrategy(inputStrategy)
@@ -52,7 +53,9 @@ bool Input::WalkRight()const{
 }
 
 AngleVec Input::Aim(sf::Vector2f position) const{
-	return mInputStrategy->Aim(position);
+	//Adds the player's and the camera's position
+	sf::View view=SFMLWindow::Acquire()->GetWindow().getView();
+	return mInputStrategy->Aim(position - view.getCenter() + (view.getSize() / 2.0f));
 }
 
 bool Input::Shoot()const{
@@ -71,4 +74,7 @@ bool Input::Jump() const
 	return mInputStrategy->Jump();
 }
 
-
+bool Input::Push() const
+{
+	return mInputStrategy->Push();
+}

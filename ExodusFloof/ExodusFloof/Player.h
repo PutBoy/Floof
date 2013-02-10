@@ -6,6 +6,7 @@
 #include "Input.h"
 #include <fstream>
 #include "AngleVec.h"
+#include "Collidable.h"
 
 
 enum KeyBind {KEY_LEFT, KEY_RIGHT, KEY_UP, KEY_DOWN, KEY_JUMP, KEY_FIRE,KEY_PUSH};
@@ -19,7 +20,8 @@ public:
 
  	void ReverseGravity();
 	bool GetPush(){return push;};
-	virtual void ResolveCollision(GameObject* other);
+
+	ColliderComponent* GetColliderComponent(){return new Collidable(this);};
 
 
 private:
@@ -31,7 +33,6 @@ private:
 
 	Input mInput;
 	bool mJumping;
-	bool mFalling;
 	double acc;
 	bool push;
 
@@ -48,6 +49,10 @@ private:
 
 	void Hurt();
 
+	int mAnimFrame;
+
+	double jumpVelo;
+	double walkSpeed;
 };
 
 #endif
