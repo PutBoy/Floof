@@ -1,8 +1,8 @@
 #include "Bullet.h"
 #include "SimpleImageJob.h"
 
-Bullet::Bullet(int x, int y, double speed, sf::Vector2f targetDirection)
-	:GameObject(x, y, 0)
+Bullet::Bullet(int x, int y, double speed, sf::Vector2f targetDirection, b2World& world)
+	:GameObject(x, y, world)
 {
 	SetID("Bullet");
 	SetSizeX(10);

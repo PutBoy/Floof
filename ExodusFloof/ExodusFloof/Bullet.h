@@ -7,7 +7,7 @@
 class Bullet: public GameObject
 {
 public:
-	Bullet(int x, int y, double speed, sf::Vector2f targetDirection);
+	Bullet(int x, int y, double speed, sf::Vector2f targetDirection, b2World& world);
 
 	ColliderComponent* GetColliderComponent(){return new NonCollidable(this);};
 

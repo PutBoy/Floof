@@ -222,7 +222,7 @@ void Player::ReverseGravity()
 void Player::Fire()
 {
 	const double GRAV_SHOT_SPEED=5.0;
-	Drop(new Bullet(GetX(), GetY(), GRAV_SHOT_SPEED, mAngleVec.vec));
+	Drop(new Bullet(GetX(), GetY(), GRAV_SHOT_SPEED, mAngleVec.vec, GetWorld()));
 }
 
 void Player::Hurt()
