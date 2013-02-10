@@ -36,6 +36,18 @@ void Display::DrawImage(const std::string& key, float x, float y){
 	}
 }
 
+void Display::DrawImage(const std::string& key, float x, float y, float angle, sf::Vector2i center){
+	if (mSpriteMap.count(key) == 1)
+	{
+		sf::Sprite tmpSprite(*mSpriteMap[key]);
+		tmpSprite.setOrigin(sf::Vector2f(center.x, center.y));
+		tmpSprite.setRotation(angle);
+		
+		tmpSprite.setPosition(x, y);
+		GetSFMLWindow()->GetWindow().draw(tmpSprite);
+	}
+}
+
 Display::Display(){	
 	GetSFMLWindow()->GetWindow().setMouseCursorVisible(true);
 }

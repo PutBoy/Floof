@@ -5,7 +5,7 @@
       <a jumpVelo ="3.6"/>
       <a walkSpeed ="2.2"/>
     </Character>
-    
+
     <Image name = "Floof">
       <a file = "assets/platformtexture.png"/>
     </Image>

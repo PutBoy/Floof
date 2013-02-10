@@ -14,6 +14,8 @@ public:
 	static void Destroy();
 	static Display* Acquire();		
 	void LoadImageFromFile(const std::string& filename, const std::string& key, int x1, int y1, int x2, int y2);
+
+	void DrawImage(const std::string& key, float x, float y, float angle, sf::Vector2i center);
 	void DrawImage(const std::string& key, float x, float y);
 	void Flip();
 	void Clear();

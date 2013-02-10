@@ -19,6 +19,12 @@
     <Filter Include="Source Files\Configs">
       <UniqueIdentifier>{01230bb9-af65-49fa-a745-a41b369cb62d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Canvas">
+      <UniqueIdentifier>{62b76644-cd92-4973-be00-fa96883bf46e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Job">
+      <UniqueIdentifier>{3865d8bc-e281-4a58-871b-12f166d77b33}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EventTimer.cpp">
@@ -33,25 +39,10 @@
     <ClCompile Include="Trigonometry.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AnimationJob.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Canvas.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Display.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DynamicImageJob.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Job.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SFMLWindow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SimpleImageJob.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="AnimationLoader.cpp">
@@ -105,9 +96,6 @@
     <ClCompile Include="StrategyKeysAndMouse.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DebugTextJob.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Collidable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -138,6 +126,24 @@
     <ClCompile Include="Border.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Job.cpp">
+      <Filter>Source Files\Canvas</Filter>
+    </ClCompile>
+    <ClCompile Include="Canvas.cpp">
+      <Filter>Source Files\Canvas</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationJob.cpp">
+      <Filter>Source Files\Canvas</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugTextJob.cpp">
+      <Filter>Source Files\Canvas</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicImageJob.cpp">
+      <Filter>Source Files\Canvas</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleImageJob.cpp">
+      <Filter>Source Files\Canvas</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EventTimer.h">
@@ -152,19 +158,7 @@
     <ClInclude Include="Trigonometry.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AnimationJob.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Canvas.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Display.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DynamicImageJob.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Job.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SFMLWindow.h">
@@ -197,9 +191,6 @@
     <ClInclude Include="Image.h">
       <Filter>Header Files\Configs</Filter>
     </ClInclude>
-    <ClInclude Include="SimpleImageJob.h">
-      <Filter>Header Files\Configs</Filter>
-    </ClInclude>
     <ClInclude Include="tinystr.h">
       <Filter>Header Files\Configs</Filter>
     </ClInclude>
@@ -228,9 +219,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AngleVec.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DebugTextJob.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Collidable.h">
@@ -266,9 +254,30 @@
     <ClInclude Include="Border.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AnimationJob.h">
+      <Filter>Header Files\Job</Filter>
+    </ClInclude>
+    <ClInclude Include="Canvas.h">
+      <Filter>Header Files\Job</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugTextJob.h">
+      <Filter>Header Files\Job</Filter>
+    </ClInclude>
+    <ClInclude Include="Job.h">
+      <Filter>Header Files\Job</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicImageJob.h">
+      <Filter>Header Files\Job</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleImageJob.h">
+      <Filter>Header Files\Job</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="config.xml">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="testconfig.xml">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

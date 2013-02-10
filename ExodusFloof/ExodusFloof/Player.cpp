@@ -44,12 +44,12 @@ Player::Player(Input& input, double x, double y, int playerNumber, b2World& worl
 	mAnimFrame = 0;
 
 	b2BodyDef bodyDef;
-	bodyDef.position.Set(x / 32.f, y / 32.f);
+	bodyDef.position.Set(x, y);
 	bodyDef.type = b2_dynamicBody;
 	mBody = world.CreateBody(&bodyDef);
 
 	b2PolygonShape dynamicBox;
-	dynamicBox.SetAsBox(1.0f, 1.0f);
+	dynamicBox.SetAsBox(32.0f, 32.0f);
 
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &dynamicBox;
@@ -72,14 +72,15 @@ void Player::Render()
 	if (mAction == "walk")
 		mAction = "walk";
 
-	GetCanvas()->AddNewJob(new DynamicImageJob("bunny", GetX() - 32.f, GetY() - 32.f, mAnimFrame / 20, mAction, mAngleVec.angle), 1);
+	GetCanvas()->AddNewJob(new DynamicImageJob("don", GetX(), GetY(), mAnimFrame / 20, mAction, mAngleVec.angle), 1);
+	GetCanvas()->AddNewJob(new DynamicImageJob("donarm", GetX(), GetY(), mAnimFrame / 20, mAction, mAngleVec.angle), 1);
 	GetCanvas()->AddNewJob(new DebugTextJob(ss.str(), 0, 0), 1);
 }
 
 void Player::Update()
 {
-	SetX(mBody->GetPosition().x * 32.f);
-	SetY(mBody->GetPosition().y * 32.f);
+	SetX(mBody->GetPosition().x);
+	SetY(mBody->GetPosition().y);
 
 	mAnimFrame++;
 
@@ -118,7 +119,7 @@ void Player::Update()
 		Fire();
 	}
 
-	GameObject::Update();
+	//GameObject::Update();
 
 
 	if (mInput.WalkLeft())

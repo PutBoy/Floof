@@ -19,13 +19,16 @@ DynamicImageJob::DynamicImageJob
 	Config cfg;
 	DynamicImageLoader* dyno = dynamic_cast<DynamicImageLoader*>(cfg.GetLoader("DynamicImage"));
 	assert (dyno != 0);
-		
-	if (dyno->GetDynamicImage(key).IsAction(action) == false)
+	const DynamicImage* dynImage = &dyno->GetDynamicImage(key);
+	mX += dynImage->GetOffset().x;
+	mY += dynImage->GetOffset().y;
+
+	if (dynImage->IsAction(action) == false)
 		mAction = "";
 
-	if (dyno->GetDynamicImage(key).IsAction(mAction) == true)
+	if (dynImage->IsAction(mAction) == true)
 	{
-		mAngle = dyno->GetDynamicImage(key).GetNearestAngle(mAction, angle);
+		mAngle = dynImage->GetNearestAngle(mAction, angle);
 
 		ss << mAngle;
 		std::string angleString = ss.str();
@@ -34,7 +37,10 @@ DynamicImageJob::DynamicImageJob
 
 		ss << key << "_" << mAction << "_" << angleString;
 
-		mAnimationJob = new AnimationJob(ss.str(), mX, mY, mFrameCount);
+		if (dynImage->RotateImage())
+			mAnimationJob = new AnimationJob(ss.str(), mX, mY, mFrameCount, static_cast<float>(angle - mAngle), dynImage->GetCenter());
+		else
+			mAnimationJob = new AnimationJob(ss.str(), mX, mY, mFrameCount, 0, dynImage->GetCenter());
 	}
 	else
 		mAnimationJob = nullptr;

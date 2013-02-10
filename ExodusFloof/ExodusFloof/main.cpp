@@ -9,7 +9,7 @@ int main()
 	SFMLWindow* window = SFMLWindow::Init(1920,1080, "apa");
 		
 	Config config;
-	config.Load("config.xml");
+	config.Load("testconfig.xml");
 
 	Game game;
 	game.Start();

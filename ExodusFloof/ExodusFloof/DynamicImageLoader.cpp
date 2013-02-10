@@ -17,9 +17,63 @@ void DynamicImageLoader::Load(TiXmlDocument& doc)
 		{
 			std::string dynamicImageName = attribute->Value();
 
-			TiXmlElement* animation = root->FirstChildElement("Animation");
+
+			    //<a rotateimage ="true"/>
+				//<a centerx ="32" centery="32"/>
+
+			TiXmlElement* element = root->FirstChildElement("a");
 			
-			animation = animation->FirstChildElement("a");
+			bool rotateimage = false;
+			int centerx = 0;
+			int centery = 0;
+			int offsetx = 0;
+			int offsety = 0;
+
+			while (element)
+			{
+				TiXmlAttribute* attrib = element->FirstAttribute();
+				while (attrib)
+				{
+					std::string name = attrib->Name();
+					std::string value = attrib->Value();
+
+					if (name == "rotateimage")
+					{
+						if (value == "true" || value == "True")
+							rotateimage = true;
+						else
+							rotateimage = false;
+					}
+					else if (name== "centerx")
+					{
+						centerx = attrib->IntValue();
+					}
+					else if (name== "centery")
+					{
+						centery = attrib->IntValue();
+					}
+					else if (name== "offsetx")
+					{
+						offsetx = attrib->IntValue();
+					}
+					else if (name== "offsety")
+					{
+						offsety = attrib->IntValue();
+					}
+
+					attrib = attrib->Next();
+				}
+
+				element = element->NextSiblingElement("a");
+			}
+				
+			if (dynamicImages.count(dynamicImageName) == 0)
+				dynamicImages.insert(dynamicImagePair(dynamicImageName, DynamicImage(rotateimage, sf::Vector2i(centerx, centery), sf::Vector2i(offsetx, offsety))));
+	
+
+			
+			TiXmlElement* animation = root->FirstChildElement("Animation");
+
 
 			int frames = -1;
 			std::string file = "";
@@ -28,25 +82,42 @@ void DynamicImageLoader::Load(TiXmlDocument& doc)
 
 			while (animation)
 			{
-
-				TiXmlAttribute* attrib = animation->FirstAttribute();
-				while (attrib)
+				
+				TiXmlElement* animElement = animation->FirstChildElement("a");
+				while (animElement)
 				{
-					std::string name = attrib->Name();
-
-					if (name == "frames")
+					TiXmlAttribute* attrib = animElement->FirstAttribute();
+					while (attrib)
 					{
-						frames = attrib->IntValue();
-					}
-					else if (name== "file")
-					{
-						file = attrib->Value();
+						std::string name = attrib->Name();
+
+						if (name == "frames")
+						{
+							frames = attrib->IntValue();
+						}
+						else if (name== "file")
+						{
+							file = attrib->Value();
+						}
+						else if (name == "action")
+						{
+							action = attrib->Value();
+						}
+						else if (name== "angle")
+						{
+							angle = attrib->IntValue();
+						}
+
+						attrib = attrib->Next();
 					}
 
-					attrib = attrib->Next();
+					animElement = animElement->NextSiblingElement("a");
 				}
 
-				animation = animation->NextSiblingElement("a");
+				internalCreate(dynamicImageName, file, frames, action, angle);
+
+				animation = animation->NextSiblingElement();
+
 			}
 
 			if (file == "" || frames <= 0)
