@@ -1,4 +1,0 @@
-Floof
-=====
-
-Exodus Floof

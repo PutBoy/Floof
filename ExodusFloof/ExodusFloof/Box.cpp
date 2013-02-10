@@ -2,7 +2,7 @@
 #include <cmath>
 #include "SimpleImageJob.h"
 
-Box::Box(int x, int y, int gravity):
+Box::Box(double x, double y, int gravity):
 	GameObject(x, y, 0.2),
 	gravityModifier(gravity)
 {
@@ -20,7 +20,21 @@ void Box::Render()
 
 void Box::Update(){
 
-	SetVelocityY(GetVelocityY() + 0.1 * gravityModifier);
+	
+	SetVelocityY(GetVelocityY() + 0.1 * static_cast<double>(gravityModifier));
+
+	if (GetVelocityX() < 0)
+	{
+		SetVelocityX(GetVelocityX() + 0.5);
+		if (GetVelocityX() > 0)
+			SetVelocityX(0);
+	}
+	else if (GetVelocityX() > 0)
+	{
+		SetVelocityX(GetVelocityX() - 0.5);
+		if (GetVelocityX() < 0)
+			SetVelocityX(0);
+	}
 
 	GameObject::Update();
 }

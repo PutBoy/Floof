@@ -13,17 +13,17 @@
 class Push: public GameObject
 {
 public:
-	Push(int x, int y, GameObject* pusherObj);
+	Push(double x, double y, GameObject* pusherObj);
 
 	virtual ColliderComponent* GetColliderComponent() {return new NonCollidable(this);};
 
 	virtual void Render(){};
 	virtual void Update();
 private:
-	int mY;
-	int mX;
-	int mOriginX;
-	int mOriginY;
+	double mY;
+	double mX;
+	double mOriginX;
+	double mOriginY;
 	int mFrameCount;
 
 	GameObject* mPusherObj;

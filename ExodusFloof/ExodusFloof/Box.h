@@ -6,7 +6,7 @@
 
 class Box:public GameObject{
 public:
-	Box(int x, int y,int gravity);
+	Box(double x, double y,int gravity);
 	void Update();
 	void Render();
 

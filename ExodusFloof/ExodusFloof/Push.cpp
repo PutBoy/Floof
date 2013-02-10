@@ -2,7 +2,7 @@
 #include "Collision.h"
 
 
-Push::Push(int x, int y, GameObject* pusherObj)
+Push::Push(double x, double y, GameObject* pusherObj)
 	:mX(x)
 	,mY(y)
 	,mPusherObj(pusherObj)
@@ -26,11 +26,20 @@ void Push::Update()
 	{
 		GameObject* obj = collision->GetGameObject();
 
-		if (obj->IsID("Box"))
+		if (obj != mPusherObj)
 		{
-			obj->SetVelocityX(obj->GetVelocityX() + veloX * 0.1);
-			obj->SetVelocityY(obj->GetVelocityY() + veloY * 0.1);
-			Kill();
+			if (obj->IsID("Box"))
+			{
+				obj->SetVelocityX(obj->GetVelocityX() + veloX * 0.1);
+				obj->SetVelocityY(obj->GetVelocityY() + veloY * 0.1);
+				Kill();
+			}
+			else if (obj->IsID("Player"))
+			{
+				obj->SetVelocityX(obj->GetVelocityX() + veloX * 0.1);
+				obj->SetVelocityY(obj->GetVelocityY() + veloY * 0.1);
+				Kill();
+			}
 		}
 
 		collision = GetNextCollision();

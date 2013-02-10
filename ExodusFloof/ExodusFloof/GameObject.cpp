@@ -1,7 +1,7 @@
 #include "GameObject.h"
 
 
-GameObject::GameObject(int x, int y, double weight)
+GameObject::GameObject(double x, double y, double weight)
 {
 	mX = x;
 	mY = y;

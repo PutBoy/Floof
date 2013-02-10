@@ -8,14 +8,23 @@ Collidable::Collidable(GameObject* object):ColliderComponent(object)
 
 void Collidable::SetX(double x)
 {
+	if (GetObject()->GetX() < x && GetObject()->GetVelocityX() > 0)
+		GetObject()->SetVelocityX(0);
+	else if (GetObject()->GetX() > x && GetObject()->GetVelocityX() < 0)
+		GetObject()->SetVelocityX(0);
+
 	GetObject()->SetX(x);
-	GetObject()->SetVelocityX(0);
+	
 }
 
 void Collidable::SetY(double y)
 {
+	if (GetObject()->GetY() > y && GetObject()->GetVelocityY() > 0)
+		GetObject()->SetVelocityY(0);
+	else if (GetObject()->GetY() < y && GetObject()->GetVelocityY() < 0)
+		GetObject()->SetVelocityY(0);
+
 	GetObject()->SetY(y);
-	GetObject()->SetVelocityY(0);
 }
 
 void Collidable::SetOtherX(double x, ColliderComponent* other)
