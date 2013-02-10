@@ -40,8 +40,8 @@ void Game::Start()
 
 	for (int i=0; i<10; i++)
 	{
-		//objects.push_back(new Border(i*64, false)); 
-		//objects.push_back(new Border(i*64, true)); 
+		objects.push_back(new Border(i*64, false)); 
+		objects.push_back(new Border(i*64, true)); 
 	}
 
 	StartLoop();
@@ -103,5 +103,4 @@ void Game::Update(int frame)
 			i--;
 		}
 	}
-
 }

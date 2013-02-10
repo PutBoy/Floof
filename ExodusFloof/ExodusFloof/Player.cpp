@@ -58,6 +58,8 @@ void Player::Render()
 
 void Player::Update()
 {
+	const double GRAV_SHOT_WAIT=1.0;
+
 	mAnimFrame++;
 
 	mAction = "";
@@ -90,8 +92,10 @@ void Player::Update()
 	else
 		SetVelocityY(GetVelocityY() + 0.1);
 
-	if(mInput.Shoot())
+	//Shoot grav gun
+	if(mInput.Shoot() && lastGravShot.getElapsedTime().asSeconds()>GRAV_SHOT_WAIT)
 	{
+		lastGravShot.restart();
 		Fire();
 	}
 
@@ -143,6 +147,11 @@ void Player::Update()
 		{
 			floofs.push_back(collision->GetDirection());
 		}
+		if (collision->GetGameObject()->IsID("Bullet"))
+		{
+			collision->GetGameObject()->Kill();
+			ReverseGravity();
+		}
 
 		collision = GetNextCollision();
 	}
@@ -182,12 +191,13 @@ void Player::Update()
 
 void Player::ReverseGravity()
 {
-
+	gravityModifier*=-1;
 }
 
 void Player::Fire()
 {
-
+	const double GRAV_SHOT_SPEED=5.0;
+	Drop(new Bullet(GetX(), GetY(), GRAV_SHOT_SPEED, mAngleVec.vec));
 }
 
 void Player::Hurt()

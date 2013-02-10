@@ -21,6 +21,10 @@
     <Image name ="BorderLeft">
       <a file ="assets/brickwallleft.png"/>
     </Image>
+
+    <Image name="Bullet">
+      <a file="assets/Bullet.png"/>
+    </Image>
     
     <DynamicImage name = "bunny">
       <Animation>
