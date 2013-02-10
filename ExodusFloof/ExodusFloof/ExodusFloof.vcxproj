@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0F8C805E-901F-4152-97EB-249CB9712BA4}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>ExodusFloof</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\floof\SFML-2.0-rc\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\floof\SFML-2.0-rc\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>sfml-audio-d.lib;sfml-graphics-d.lib;sfml-main-d.lib;sfml-network-d.lib;sfml-system-d.lib;sfml-window-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="AnimationJob.cpp" />
+    <ClCompile Include="AnimationLoader.cpp" />
+    <ClCompile Include="Box.cpp" />
+    <ClCompile Include="Canvas.cpp" />
+    <ClCompile Include="Config.cpp" />
+    <ClCompile Include="ConfigSingleton.cpp" />
+    <ClCompile Include="DebugTextJob.cpp" />
+    <ClCompile Include="Display.cpp" />
+    <ClCompile Include="DynamicImage.cpp" />
+    <ClCompile Include="DynamicImageJob.cpp" />
+    <ClCompile Include="DynamicImageLoader.cpp" />
+    <ClCompile Include="EventTimer.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="ImageLoader.cpp" />
+    <ClCompile Include="Input.cpp" />
+    <ClCompile Include="Job.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="SFMLWindow.cpp" />
+    <ClCompile Include="SimpleImageJob.cpp" />
+    <ClCompile Include="StrategyKeys.cpp" />
+    <ClCompile Include="StrategyKeysAndMouse.cpp" />
+    <ClCompile Include="tinystr.cpp" />
+    <ClCompile Include="tinyxml.cpp" />
+    <ClCompile Include="tinyxmlerror.cpp" />
+    <ClCompile Include="tinyxmlparser.cpp" />
+    <ClCompile Include="Trigonometry.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AngleVec.h" />
+    <ClInclude Include="Animation.h" />
+    <ClInclude Include="AnimationJob.h" />
+    <ClInclude Include="AnimationLoader.h" />
+    <ClInclude Include="Box.h" />
+    <ClInclude Include="Canvas.h" />
+    <ClInclude Include="Config.h" />
+    <ClInclude Include="ConfigLoader.h" />
+    <ClInclude Include="ConfigSingleton.h" />
+    <ClInclude Include="DebugTextJob.h" />
+    <ClInclude Include="Display.h" />
+    <ClInclude Include="DynamicImage.h" />
+    <ClInclude Include="DynamicImageJob.h" />
+    <ClInclude Include="DynamicImageLoader.h" />
+    <ClInclude Include="EventTimer.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameState.h" />
+    <ClInclude Include="Image.h" />
+    <ClInclude Include="ImageLoader.h" />
+    <ClInclude Include="Input.h" />
+    <ClInclude Include="InputStrategy.h" />
+    <ClInclude Include="Job.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="SFMLWindow.h" />
+    <ClInclude Include="SimpleImageJob.h" />
+    <ClInclude Include="StrategyKeys.h" />
+    <ClInclude Include="StrategyKeysAndMouse.h" />
+    <ClInclude Include="tinystr.h" />
+    <ClInclude Include="tinyxml.h" />
+    <ClInclude Include="Trigonometry.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="config.xml" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
