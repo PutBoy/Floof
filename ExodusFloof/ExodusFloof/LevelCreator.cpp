@@ -40,7 +40,7 @@ void LevelCreator::internalCreateLevel(size_t tilesX, size_t tilesY, b2World& wo
 		int oldFloorH = floorH;
 		int oldRoofH = roofH;
 
-		floorH = 1;//oldFloorH + std::rand() % 3 - 1; 
+		floorH = oldFloorH + std::rand() % 3 - 1; 
 		roofH = oldRoofH + std::rand() % 3 - 1;
 
 		if (floorH < 1)

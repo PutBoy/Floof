@@ -31,7 +31,7 @@ SFMLWindow::SFMLWindow(int width, int height, std::string title){
 		title, 
 		sf::Style::Close);
 
-	mWindow.setFramerateLimit(60);
+
 }
 
 int SFMLWindow::WindowOpen(){
