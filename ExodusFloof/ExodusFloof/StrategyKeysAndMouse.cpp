@@ -8,38 +8,23 @@
 const double StrategyKeysAndMouse::mPi= 4*atan(1.0);
 
 bool StrategyKeysAndMouse::WalkLeft() const{
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-		return true;
-	else
-		return false;
+	return sf::Keyboard::isKeyPressed(sf::Keyboard::A);
 }
 bool StrategyKeysAndMouse::WalkRight() const{
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-		return true;
-	else
-		return false;
+	return sf::Keyboard::isKeyPressed(sf::Keyboard::D);
 }
 bool StrategyKeysAndMouse::Shoot() const{
-	if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
-		return true;
-	else
-		return false;
+	return sf::Mouse::isButtonPressed(sf::Mouse::Left);
 }
 
 bool StrategyKeysAndMouse::Jump() const{
 	
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-		return true;
-	else
-		return false;
+	return sf::Keyboard::isKeyPressed(sf::Keyboard::Space);
 }
 
 bool StrategyKeysAndMouse::Push() const
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl))
-		return true;
-	else
-		return false;
+	return sf::Keyboard::isKeyPressed(sf::Keyboard::LControl);
 }
 
 AngleVec StrategyKeysAndMouse::Aim(sf::Vector2f position){

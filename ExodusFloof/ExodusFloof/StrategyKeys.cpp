@@ -6,38 +6,22 @@ StrategyKeys::StrategyKeys()
 	:mDegrees(0){}
 
 bool StrategyKeys::WalkLeft() const{
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-		return true;
-	else
-		return false;
+	return sf::Keyboard::isKeyPressed(sf::Keyboard::Left);
 }
 bool StrategyKeys::WalkRight() const{
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-		return true;
-	else
-		return false;
+	return sf::Keyboard::isKeyPressed(sf::Keyboard::Right);
 }
 bool StrategyKeys::Shoot() const{
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-		return true;
-	else
-		return false;
+	return sf::Keyboard::isKeyPressed(sf::Keyboard::Space);
 }
 bool StrategyKeys::Jump() const{
 	
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0))
-		return true;
-	else
-		return false;
-
+	return sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0);
 }
 
 bool StrategyKeys::Push() const
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::RControl))
-		return true;
-	else
-		return false;
+	return sf::Keyboard::isKeyPressed(sf::Keyboard::RControl);
 }
 
 AngleVec StrategyKeys::Aim(sf::Vector2f position){
