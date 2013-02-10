@@ -5,7 +5,7 @@
 int main()
 {
 
-	SFMLWindow* window = SFMLWindow::Init(1920,1080, "apa");
+	SFMLWindow* window = SFMLWindow::Init(1366,768, "apa");
 		
 	Config config;
 	config.Load("config.xml");
