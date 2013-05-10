@@ -75,6 +75,7 @@ void Box::Update(){
 	}
 }
 
-void Box::ReverseGravity(){
-	gravityModifier = -gravityModifier;
+void Box::ReverseGravity(){	
+	gravityModifier*=-1;
+	mBody->SetGravityScale(gravityModifier);
 }

@@ -226,6 +226,7 @@ void Player::Update()
 void Player::ReverseGravity()
 {
 	gravityModifier*=-1;
+	mBody->SetGravityScale(gravityModifier);
 }
 
 void Player::Fire()
